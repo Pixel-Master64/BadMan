@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 16fa0fe06c3a202499b8e53c9ad97b74
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 8690bbdfcc9947046a0c6bff29a124e2
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 2e91f441f337f4a45a49185d404bdc1a
+  - enabled: 1
+    path: Assets/Scenes/JeffHouse.unity
+    guid: c4546fc7295578b45b593cb393349ad7
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: c00d4808286727e4c8f5a14180a96e28
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: c143eff7a1bd106459d512fdc48b28e9
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: b39956cfa3830e34a8a60161829080fc
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: c28e23ef3296d6949aef240a78abd468
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: abe73d6e153d74a43964bb954bfc3b38
+  - enabled: 1
+    path: Assets/Scenes/Boss.unity
+    guid: 676dd0cc067fadc43b66f8ad81954b32
+  - enabled: 1
+    path: Assets/Scenes/TheRealDeal.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TheMoon.unity
+    guid: b7803000126b3634f992c68ad526c773
+  m_configObjects: {}
