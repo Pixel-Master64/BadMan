@@ -20,5 +20,16 @@ public class ActivateHitbox : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
         else
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        if (Hand.GetComponent<BossHandMove>().currentAttack == 1)
+        {
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.95f, 0.05f);
+        }
+        else if (Hand.GetComponent<BossHandMove>().currentAttack == 2)
+        {
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
+        }
     }
 }

@@ -60,7 +60,10 @@ public class Boss : MonoBehaviour
             GetComponent<Health>().CurrentHealth = GetComponent<Health>().CurrentHealth -1;
             readyToBeHit = false;
             //Fling Bad Man
-            other.rigidbody.AddForce(transform.up * 4, ForceMode2D.Impulse);
+            other.rigidbody.AddForce(transform.up * -2, ForceMode2D.Impulse);
+
+            //return to normal state
+            GetComponent<BossAttacks>().GoBackToNormal();
         }
     }
 }

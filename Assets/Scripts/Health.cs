@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameObject owner;
+
     public SpriteRenderer spriteRenderer;
 
 
@@ -25,12 +27,15 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (ActullyDoHealthAndStuff)
             CurrentHealth = MaxHealth;
         else
             enabled = false;
 
         healthState = HealthState.canBeHurt;
+
+        owner = this.gameObject;
     }
 
     // Update is called once per frame
@@ -72,6 +77,11 @@ public class Health : MonoBehaviour
             CurrentHealth = CurrentHealth - 1;
             CanBeHurt = false;
             healthState = HealthState.invincable;
+
+            //if(owner.name == "Player")
+            //{
+            //    owner.GetComponent<Rigidbody2D>().AddForce(transform.up * 6, ForceMode2D.Impulse);
+            //}
         }
     }
 }

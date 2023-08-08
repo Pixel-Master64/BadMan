@@ -13,6 +13,7 @@ TagManager:
   - Trigger
   - Moving Platform
   - Camera Destination
+  - Floor
   layers:
   - Default
   - TransparentFX
