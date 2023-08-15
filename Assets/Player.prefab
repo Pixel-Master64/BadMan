@@ -190,12 +190,13 @@ MonoBehaviour:
   CurrentSpeed: {x: 0, y: 0}
   CameraDestination: {fileID: 0}
   CameraDestinationChild: {x: 0, y: 0}
-  JumpSfxPlayer: {fileID: 0}
-  MiscSfxPlayer: {fileID: 0}
-  CoinSfx: {fileID: 0}
-  KeySfx: {fileID: 0}
-  UnlockSfx: {fileID: 0}
-  SpringSfx: {fileID: 0}
+  JumpSfxPlayer: {fileID: 2408106182259262222}
+  MiscSfxPlayer: {fileID: -8889270008138384469}
+  CoinSfx: {fileID: 8300000, guid: 5a4d5e8fa4f2a0448973fcbf4814cfb5, type: 3}
+  KeySfx: {fileID: 8300000, guid: b3d3d054865b2124ca277c55e6fb1892, type: 3}
+  UnlockSfx: {fileID: 8300000, guid: fb9f00d1af1b04242a467bbf666f3cf5, type: 3}
+  SpringSfx: {fileID: 8300000, guid: a6f4e0e245dc29b4798a41689691c396, type: 3}
+  OwwSfx: {fileID: 8300000, guid: a192c059c445ff3438ecbbf680250a63, type: 3}
 --- !u!114 &2587750738884472972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,9 +249,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 557b7e499b787a844b735914833f34e8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -344,9 +345,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5a4d5e8fa4f2a0448973fcbf4814cfb5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

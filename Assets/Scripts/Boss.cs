@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour
 
     public bool readyToBeHit = false;
 
+    public AudioSource sfxPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +62,8 @@ public class Boss : MonoBehaviour
             readyToBeHit = false;
             //Fling Bad Man
             other.rigidbody.AddForce(transform.up * -2, ForceMode2D.Impulse);
+
+            sfxPlayer.Play();
 
             //return to normal state
             GetComponent<BossAttacks>().GoBackToNormal();

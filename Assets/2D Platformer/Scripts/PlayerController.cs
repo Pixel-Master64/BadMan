@@ -34,6 +34,7 @@ namespace Platformer
         public AudioClip KeySfx;
         public AudioClip UnlockSfx;
         public AudioClip SpringSfx;
+        public AudioClip OwwSfx;
 
         void Start()
         {
@@ -79,6 +80,7 @@ namespace Platformer
                 {
                     rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                     HasJumped = true;
+                    JumpSfxPlayer.Play();
                 }
             }
             else
@@ -115,7 +117,13 @@ namespace Platformer
                 if (GetComponent<Health>().ActullyDoHealthAndStuff == false) // check if we doing the health system
                     deathState = true; // Say to GameManager that player is dead
                 else
+                {
                     GetComponent<Health>().Hurt();
+
+                    MiscSfxPlayer.clip = OwwSfx;
+                    MiscSfxPlayer.Play();
+                }
+                    
             }
         }
 
@@ -125,12 +133,18 @@ namespace Platformer
             {
                 gameManager.coinsCounter += 1;
                 Destroy(other.gameObject);
+
+                MiscSfxPlayer.clip = CoinSfx;
+                MiscSfxPlayer.Play();
             }
 
             if (other.gameObject.tag == "Key")
             {
                 gameManager.keysCounter += 1;
                 Destroy(other.gameObject);
+
+                MiscSfxPlayer.clip = KeySfx;
+                MiscSfxPlayer.Play();
             }
 
             if (other.gameObject.tag == "Lock")
@@ -139,16 +153,25 @@ namespace Platformer
                 {
                     gameManager.keysCounter -= 1;
                     Destroy(other.gameObject);
+
+                    MiscSfxPlayer.clip = UnlockSfx;
+                    MiscSfxPlayer.Play();
                 }
             }
 
             if (other.gameObject.tag == "JumpPad")
             {
                 rigidbody.AddForce(transform.up * 12, ForceMode2D.Impulse);
+
+                MiscSfxPlayer.clip = SpringSfx;
+                MiscSfxPlayer.Play();
             }
             if (other.gameObject.tag == "SuperJumpPad")
             {
                 rigidbody.AddForce(transform.up * 20, ForceMode2D.Impulse);
+
+                MiscSfxPlayer.clip = SpringSfx;
+                MiscSfxPlayer.Play();
             }
 
             if (other.gameObject.tag == "Trigger") //Triggers

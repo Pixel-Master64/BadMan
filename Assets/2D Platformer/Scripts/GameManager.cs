@@ -53,9 +53,11 @@ namespace Platformer
 
         float timePassed = 0;
 
+        public GameObject musicPlayer;
         void Start()
         {
             player = GameObject.Find("Player").GetComponent<PlayerController>();
+            musicPlayer = GameObject.Find("BG Music");
         }
 
         void Update()
@@ -202,6 +204,14 @@ namespace Platformer
                     {
                         GameObject boss = GameObject.Find("Boss Head");
                         boss.GetComponent<BossAttacks>().DieFully();
+                    }
+                    if (ActionAfterDialog == 2)
+                    {
+                        musicPlayer.GetComponent<ReserveSongs>().ChangeToSong1();
+                    }
+                    if (ActionAfterDialog == 3)
+                    {
+                        musicPlayer.GetComponent<ReserveSongs>().ChangeToSong2();
                     }
                 }
             }
