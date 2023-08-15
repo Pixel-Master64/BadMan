@@ -2,27 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BossProjectile : MonoBehaviour
 {
     public GameObject target;
+    public GameObject boss;
     public Vector2 targetPosition;
+    public Vector2 targetLookAt;
+    public Vector2 raycastPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("Player");
-        targetPosition = target.transform.position;
+        boss = GameObject.Find("Boss Head");
 
+        targetPosition = target.transform.position;
+        targetLookAt = (target.transform.position - transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, 4f*Time.deltaTime);
-        if ((Vector2.Distance(transform.position, new Vector2(targetPosition.x, targetPosition.y)) < 0.01f))
+        int layerMask = 1 << 3;
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, targetLookAt, Mathf.Infinity, layerMask);
+        raycastPosition = hit.point;
+
+        float speed = boss.GetComponent<BossAttacks>().speed;
+
+        transform.position = Vector2.MoveTowards(transform.position, raycastPosition, 4f * Time.deltaTime * speed);
+
+        if ((Vector2.Distance(transform.position, raycastPosition) < 0.001f))
         {
             Destroy(gameObject);
         }
+
+
     }
 }

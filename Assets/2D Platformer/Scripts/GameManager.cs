@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Platformer
@@ -35,6 +36,7 @@ namespace Platformer
         public string[] TextBoxDialog;
         public string[] TextBoxSpeakers;
         public int DialogPointer;
+        public int ActionAfterDialog;
 
         public string DeathMessage = "";
         public bool ShowDeathMessage = false;
@@ -48,6 +50,8 @@ namespace Platformer
         public string timeDisplay;
         public Text TimerUI;
         public bool ShowTimer = false;
+
+        float timePassed = 0;
 
         void Start()
         {
@@ -66,11 +70,11 @@ namespace Platformer
             string leadingZeroSeconds = ""; //Sets leading zeros
             if (displaySeconds < 10)
                 leadingZeroSeconds = "0";
-            timeDisplay =  displayMinutes + ":" + leadingZeroSeconds + displaySeconds; //sets display timer string
+            timeDisplay = displayMinutes + ":" + leadingZeroSeconds + displaySeconds; //sets display timer string
 
 
 
-            CoinCounterUI.text = "$"+coinsCounter.ToString(); //UI Update
+            CoinCounterUI.text = "$" + coinsCounter.ToString(); //UI Update
             KeyCounterUI.text = keysCounter.ToString();
             ObjectiveUI.text = "Objective: ";
 
@@ -81,7 +85,7 @@ namespace Platformer
                 TextBoxSpeaker.enabled = true;
                 PressEnterToExitText.enabled = true;
             }
-                
+
             else
             {
                 TextBoxUI.enabled = false;
@@ -89,8 +93,8 @@ namespace Platformer
                 TextBoxSpeaker.enabled = false;
                 PressEnterToExitText.enabled = false;
             }
-                
-            if(player.deathState == true)
+
+            if (player.deathState == true)
             {
                 playerGameObject.SetActive(false);
                 GameObject deathPlayer = (GameObject)Instantiate(deathPlayerPrefab, playerGameObject.transform.position, playerGameObject.transform.rotation);
@@ -142,7 +146,7 @@ namespace Platformer
             else if (CurrentChallange == 5)
             {
                 CurrentChallangeUI.text = "Objective: Take your time :)";
-                if (totalSeconds > TimeLimit-1)
+                if (totalSeconds > TimeLimit - 1)
                 {
                     TimerUI.text = "00:00";
                     player.deathState = true;
@@ -157,11 +161,11 @@ namespace Platformer
                 }
                 ShowTimer = true;
             }
-                
+
             else
             {
                 CurrentChallangeUI.text = "";
-            }     
+            }
         }
 
         public void ReloadLevel()
@@ -191,15 +195,26 @@ namespace Platformer
             if (DialogPointer == TextBoxDialog.Length)
             {
                 InCutscene = false;
+
+                if(ActionAfterDialog != 0)
+                {
+                    if(ActionAfterDialog == 1)
+                    {
+                        GameObject boss = GameObject.Find("Boss Head");
+                        boss.GetComponent<BossAttacks>().DieFully();
+                    }
+                }
             }
             else
             {
                 TextBoxSpeaker.text = TextBoxSpeakers[DialogPointer];
                 TextBoxText.text = TextBoxDialog[DialogPointer];
             }
+
+        }
+        public void BossDied()
+        {
             
         }
-
-        
     }
 }

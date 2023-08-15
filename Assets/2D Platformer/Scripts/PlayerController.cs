@@ -150,6 +150,12 @@ namespace Platformer
                 {
                     gameManager.TextBoxDialog = other.gameObject.GetComponent<TriggerData>().Text;
                     gameManager.TextBoxSpeakers = other.gameObject.GetComponent<TriggerData>().Speakers;
+
+                    if (other.gameObject.GetComponent<TriggerData>().actionAfterClose)
+                        gameManager.ActionAfterDialog = other.gameObject.GetComponent<TriggerData>().actionID;
+                    else
+                        gameManager.ActionAfterDialog = 0;
+
                     gameManager.LoadDialog();
                     gameManager.InCutscene = true;
                     

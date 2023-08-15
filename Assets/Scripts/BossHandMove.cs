@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class BossHandMove : MonoBehaviour
@@ -31,8 +33,9 @@ public class BossHandMove : MonoBehaviour
     Vector2 attackTarget;
 
     public GameObject projectilePrefab;
+    public MeshRenderer PLS;
 
-    enum HandState { Idle, Attacking, Smashing, Slide, Sliding, SlidingReturn, Projectile, Fire, Weak };
+    enum HandState { Idle, Attacking, Hold, Smashing, Slide, Sliding, SlidingReturn, Projectile, Fire, Weak, Dead, Dying, Wait };
     HandState handState;
 
     // Start is called before the first frame update
@@ -86,14 +89,25 @@ public class BossHandMove : MonoBehaviour
                     timePassed += Time.deltaTime;
 
                     attackTarget = new Vector2(player.transform.position.x, 1.5f);
-                    transform.position = Vector2.MoveTowards(transform.position, attackTarget, distanceToTarget / 0.70f * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(transform.position, attackTarget, distanceToTarget / 0.70f * Time.deltaTime * attackSpeed);
 
                     if (timePassed > 3)
                     {
                         timePassed = 0;
-                        handState = HandState.Smashing;
+                        handState = HandState.Hold;
 
                     }
+                    break;
+                }
+            case HandState.Hold:
+                {
+                    timePassed += Time.deltaTime;
+                    if (timePassed > 0.4)
+                    {
+                        timePassed = 0;
+                        handState = HandState.Smashing;
+                    }
+                        
                     break;
                 }
             case HandState.Smashing:
@@ -154,7 +168,7 @@ public class BossHandMove : MonoBehaviour
 
                     if (LeftHand)
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(13f, transform.position.y), 20f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(13f, transform.position.y), 15f * Time.deltaTime * attackSpeed);
                         if (Vector2.Distance(transform.position, new Vector2(13f, transform.position.y)) < 0.1f)
                         {
                             timePassed += Time.deltaTime;
@@ -163,7 +177,7 @@ public class BossHandMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-13f, transform.position.y), 20f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-13f, transform.position.y), 15f * Time.deltaTime * attackSpeed);
                         if (Vector2.Distance(transform.position, new Vector2(-13f, transform.position.y)) < 0.1f)
                         {
                             timePassed += Time.deltaTime;
@@ -200,9 +214,9 @@ public class BossHandMove : MonoBehaviour
             case HandState.Projectile:
                 {
                     if (LeftHand)
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-7 + Mathf.Sin(gameManager.gameTimer * 5), 1 + Mathf.Cos(gameManager.gameTimer * 5)), 10f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-7 + Mathf.Sin(gameManager.gameTimer * 5 * attackSpeed), 1 + Mathf.Cos(gameManager.gameTimer * 5 * attackSpeed)), 10f * Time.deltaTime * attackSpeed);
                     else
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(7 + Mathf.Sin(gameManager.gameTimer * 5), 1 + Mathf.Cos(gameManager.gameTimer * 5)), 10f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(7 + Mathf.Sin(gameManager.gameTimer * 5 * attackSpeed), 1 + Mathf.Cos(gameManager.gameTimer * 5 * attackSpeed)), 10f * Time.deltaTime * attackSpeed);
 
                     timePassed += Time.deltaTime;
 
@@ -235,6 +249,33 @@ public class BossHandMove : MonoBehaviour
 
                     break;
                 }
+            case HandState.Dead:
+                {
+                    if (LeftHand)
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-7 + Mathf.Sin(gameManager.gameTimer * 20), 1 + Mathf.Cos(gameManager.gameTimer * 20)), 10f * Time.deltaTime);
+                    else
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(7 + Mathf.Sin(gameManager.gameTimer * 20), 1 + Mathf.Cos(gameManager.gameTimer * 20)), 10f * Time.deltaTime);
+
+                    break;
+                }
+            case HandState.Dying:
+                {
+                    timePassed += Time.deltaTime;
+
+                    if (LeftHand)
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-7 + Mathf.Sin(gameManager.gameTimer * 20), 1 + Mathf.Cos(gameManager.gameTimer * 20)), 10f * Time.deltaTime);
+                    else
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(7 + Mathf.Sin(gameManager.gameTimer * 20), 1 + Mathf.Cos(gameManager.gameTimer * 20)), 10f * Time.deltaTime);
+
+                    gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                    if (timePassed > 3)
+                    {
+                        
+                            Destroy(gameObject);
+                    }
+                    break;
+                }
+
         }
     }
 
@@ -261,4 +302,13 @@ public class BossHandMove : MonoBehaviour
     {
         handState = HandState.Idle;
     }
+    public void BeDead()
+    {
+        handState = HandState.Dead;
+    }
+    public void BeDying()
+    {
+        handState = HandState.Dying;
+    }
 }
+

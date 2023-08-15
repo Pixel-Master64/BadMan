@@ -4928,4 +4928,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  boss: {fileID: 0}
   targetPosition: {x: 0, y: 0}

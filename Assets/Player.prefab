@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5281073342059787146}
   - component: {fileID: 4081630606078640467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Destination
   m_TagString: Camera Destination
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 4317506828029377922}
   - component: {fileID: 2587750738884472972}
   - component: {fileID: 4317506828029377923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -206,6 +206,9 @@ MonoBehaviour:
   CurrentHealth: 0
   Iframes: 0
   CanBeHurt: 0
+  gameManager: {fileID: 0}
+  owner: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!50 &4317506828029377923
 Rigidbody2D:
   serializedVersion: 4
@@ -236,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4317506828197064753}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IsGroundedPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TriggerData : MonoBehaviour
@@ -17,6 +18,9 @@ public class TriggerData : MonoBehaviour
     public bool TriggerTypeLaunch = false;
     public int LaunchForceRight;
     public int LaunchForceUp;
+
+    public bool actionAfterClose;
+    public int actionID;
    
     // Start is called before the first frame update
     void Start()
@@ -28,5 +32,10 @@ public class TriggerData : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MoveDown()
+    {
+        gameObject.transform.position = new Vector2(transform.position.x, -4.5f);
     }
 }

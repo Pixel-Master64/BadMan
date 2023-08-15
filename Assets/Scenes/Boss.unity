@@ -404,6 +404,51 @@ MonoBehaviour:
   enableHitbox: 0
   currentAttack: 0
   projectilePrefab: {fileID: 6998219395620435730, guid: aa851217c5d787b45af6c9651611aaaf, type: 3}
+  PLS: {fileID: 565396072}
+--- !u!1 &664953267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664953269}
+  - component: {fileID: 664953268}
+  m_Layer: 0
+  m_Name: Wait Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &664953268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664953267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934b98d8b5102d3459ad613d4bb8c7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &664953269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664953267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.737151, y: 8.595041, z: -5.0924063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &690232874
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +650,8 @@ MonoBehaviour:
   attacksUntillWeak: 0
   speed: 0
   attackSpeed: 0
+  Temp: {fileID: 1827868471}
+  Temp2: {fileID: 664953267}
 --- !u!1 &729467398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6705,6 +6752,7 @@ MonoBehaviour:
   enableHitbox: 0
   currentAttack: 0
   projectilePrefab: {fileID: 6998219395620435730, guid: aa851217c5d787b45af6c9651611aaaf, type: 3}
+  PLS: {fileID: 1478045365}
 --- !u!1 &1479923948
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,6 +6805,8 @@ MonoBehaviour:
   TriggerTypeLaunch: 0
   LaunchForceRight: 0
   LaunchForceUp: 0
+  actionAfterClose: 0
+  actionID: 0
 --- !u!61 &1479923950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6962,6 +7012,7 @@ MonoBehaviour:
   TextBoxDialog: []
   TextBoxSpeakers: []
   DialogPointer: 0
+  ActionAfterDialog: 0
   DeathMessage: 
   ShowDeathMessage: 0
   DeathMessageText: {fileID: 936841047}
@@ -7123,6 +7174,105 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1827868471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827868474}
+  - component: {fileID: 1827868473}
+  - component: {fileID: 1827868472}
+  m_Layer: 0
+  m_Name: TriggerWin
+  m_TagString: Trigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1827868472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827868471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdcdda2650320fd40a396c26945eab7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerTypeTextBox: 1
+  Text:
+  - NOOOOOOOO!!!!!! Defeated by a mere mortal
+  - GG
+  - My the Sun go dark for your sins!
+  - My the ocean run red for your sins!
+  - My the Wor-
+  - enough talk
+  - See you in hell
+  - Bad Man
+  Speakers:
+  - Evil Guy
+  - Bad Man
+  - Evil Guy
+  - Evil Guy
+  - Evil Guy
+  - Bad Man
+  - Evil Guy
+  - Evil Guy
+  TriggerTypeWarp: 0
+  destination: 
+  TriggerTypeChangeChallange: 0
+  Challange: 0
+  TriggerTypeLaunch: 0
+  LaunchForceRight: 0
+  LaunchForceUp: 0
+  actionAfterClose: 1
+  actionID: 1
+--- !u!61 &1827868473
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827868471}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1827868474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827868471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 21.1, z: 0}
+  m_LocalScale: {x: 24, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1870945608
 GameObject:
   m_ObjectHideFlags: 0
@@ -12115,7 +12265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4317506828029377918, guid: e922e162bcc2f4847b1a9e8acafff731, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.31
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4317506828029377918, guid: e922e162bcc2f4847b1a9e8acafff731, type: 3}
       propertyPath: m_LocalPosition.z
