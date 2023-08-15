@@ -31,7 +31,7 @@ public class BossProjectile : MonoBehaviour
 
         float speed = boss.GetComponent<BossAttacks>().speed;
 
-        transform.position = Vector2.MoveTowards(transform.position, raycastPosition, 4f * Time.deltaTime * speed);
+        transform.position = Vector2.MoveTowards(transform.position, raycastPosition, 4.5f * Time.deltaTime * speed);
 
         if ((Vector2.Distance(transform.position, raycastPosition) < 0.001f))
         {

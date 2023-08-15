@@ -28,6 +28,13 @@ namespace Platformer
         public GameObject CameraDestination;
         public Vector2 CameraDestinationChild;
 
+        public AudioSource JumpSfxPlayer;
+        public AudioSource MiscSfxPlayer;
+        public AudioClip CoinSfx;
+        public AudioClip KeySfx;
+        public AudioClip UnlockSfx;
+        public AudioClip SpringSfx;
+
         void Start()
         {
             rigidbody = GetComponent<Rigidbody2D>();
