@@ -35,7 +35,7 @@ public class BossHandMove : MonoBehaviour
     public GameObject projectilePrefab;
     public MeshRenderer PLS;
 
-    public float slidingHeight;
+    public int lastAttackPreformed;
 
     enum HandState { Idle, Attacking, Hold, Smashing, Slide, Sliding, SlidingReturn, Projectile, Fire, Weak, Dead, Dying, Wait};
     HandState handState;
@@ -104,7 +104,7 @@ public class BossHandMove : MonoBehaviour
             case HandState.Hold: //Pause in mid-air to allow for the player to dodge
                 {
                     timePassed += Time.deltaTime;
-                    if (timePassed > 0.3) //after 0.3 seconds, change state to "Smashing"
+                    if (timePassed > 0.35) //after 0.35 seconds, change state to "Smashing"
                     {
                         timePassed = 0;
                         handState = HandState.Smashing;
@@ -126,7 +126,7 @@ public class BossHandMove : MonoBehaviour
                         enableHitbox = false;
                     }
 
-                    if (timePassed > 1.5f * timerSpeed) //after 1.5 seconds, change state to "Idle"
+                    if (timePassed > 1f * timerSpeed) //after 1 seconds, change state to "Idle"
                     {
                         timePassed = 0;
                         handState = HandState.Idle;
@@ -143,18 +143,18 @@ public class BossHandMove : MonoBehaviour
                     float distanceToTarget;
                     if (LeftHand)
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(-10.5f, slidingHeight));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10.5f, slidingHeight), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(-10.5f, -5f));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10.5f, -5f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
                     }
                     else
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(10.5f, slidingHeight));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(10.5f, slidingHeight), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(10.5f, -5f));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(10.5f, -5f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
                     }
 
                     timePassed += Time.deltaTime;
 
-                    if (timePassed > 3.5f * timerSpeed) //after 3.5 seconds, change state to "Sliding"
+                    if (timePassed > 3.20f * timerSpeed) //after 3.5 seconds, change state to "Sliding"
                     {
                         timePassed = 0;
                         handState = HandState.Sliding;
@@ -187,7 +187,7 @@ public class BossHandMove : MonoBehaviour
                         }
                     }
 
-                    if (timePassed > 1.5f * timerSpeed) //after 1.5 seconds, change state to "SlidingReturn"
+                    if (timePassed > 1.42f * timerSpeed) //after 1.5 seconds, change state to "SlidingReturn"
                     {
                         timePassed = 0;
                         handState = HandState.SlidingReturn;
@@ -222,7 +222,7 @@ public class BossHandMove : MonoBehaviour
 
                     timePassed += Time.deltaTime;
 
-                    if (timePassed > 1.5f * ((timerSpeed*2)/3)) //after 1.5 seconds, create a Projectile object, change state to "Idle"
+                    if (timePassed > 1.56f * ((timerSpeed*2)/3)) //after 1.5 seconds, create a Projectile object, change state to "Idle"
                     {
                         timePassed = 0;
                         GameObject Projectile = (GameObject)Instantiate(projectilePrefab, transform.position, transform.rotation);
@@ -240,13 +240,13 @@ public class BossHandMove : MonoBehaviour
                     float distanceToTarget;
                     if (LeftHand)
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5 + (Mathf.Sin(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5 + (Mathf.Sin(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)), distanceToTarget / 0.5f * Time.deltaTime);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5.2f + (Mathf.Sin(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5.2f + (Mathf.Sin(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)), distanceToTarget / 0.5f * Time.deltaTime);
                     }
                     else
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5 + (Mathf.Cos(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5 + (Mathf.Cos(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)), distanceToTarget / 0.5f * Time.deltaTime);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5.2f + (Mathf.Cos(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(StartingLocation.x, StartingLocation.y - 5.2f + (Mathf.Cos(gameManager.gameTimer * speed) * (IdleIntensity + 2) + 2)), distanceToTarget / 0.5f * Time.deltaTime);
                     }
 
                     break;
@@ -286,21 +286,25 @@ public class BossHandMove : MonoBehaviour
         if (!currentlyAttacking)
         {
             int attack = Random.Range(1, 4);
+            if (LeftHand)
+                attack = Random.Range(1, 4);
+
             timePassed = 0;
             if (attack == 1)
+            {
                 handState = HandState.Attacking;
+                lastAttackPreformed = 1;
+            }
             else if (attack == 2)
             {
-                if (Random.Range(1, 4) <= 2)
-                    slidingHeight = -5f;
-                else
-                    slidingHeight = -2f;
-
                 handState = HandState.Slide;
+                lastAttackPreformed = 2;
             }
-                
-            else if (attack == 3)
+            else// if (attack == 3)
+            {
                 handState = HandState.Projectile;
+                lastAttackPreformed = 3;
+            }
         }
     }
     public void BeWeak() //change state to "Weak"

@@ -378,7 +378,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05}
+  m_Size: {x: 0.95, y: 0.05}
   m_EdgeRadius: 0
 --- !u!114 &565396079
 MonoBehaviour:
@@ -405,7 +405,7 @@ MonoBehaviour:
   currentAttack: 0
   projectilePrefab: {fileID: 6998219395620435730, guid: aa851217c5d787b45af6c9651611aaaf, type: 3}
   PLS: {fileID: 565396072}
-  slidingHeight: 0
+  lastAttackPreformed: 0
 --- !u!1 &664953267
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +837,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -12, y: 10}
+  m_Offset: {x: -12, y: 12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -848,7 +848,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 25}
   m_EdgeRadius: 0
 --- !u!61 &729467403
 BoxCollider2D:
@@ -863,7 +863,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 12, y: 10}
+  m_Offset: {x: 12, y: 12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -874,7 +874,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 25}
   m_EdgeRadius: 0
 --- !u!1 &825788356
 GameObject:
@@ -6825,7 +6825,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05}
+  m_Size: {x: 0.95, y: 0.05}
   m_EdgeRadius: 0
 --- !u!114 &1478045372
 MonoBehaviour:
@@ -6852,7 +6852,7 @@ MonoBehaviour:
   currentAttack: 0
   projectilePrefab: {fileID: 6998219395620435730, guid: aa851217c5d787b45af6c9651611aaaf, type: 3}
   PLS: {fileID: 1478045365}
-  slidingHeight: 0
+  lastAttackPreformed: 0
 --- !u!1 &1479923948
 GameObject:
   m_ObjectHideFlags: 0
@@ -6891,7 +6891,11 @@ MonoBehaviour:
   - I DIDNT PROMISE TO SLUMBER FOR A 1000 YEARS FOR ONLY TO BE WOKEN UP IN 999 YEARS
   - my bad
   - YOU WILL PERISH
+  - alright lets go! Hand to HAND. Head to HEAD!
+  - Bwah! you can't even reach my head, there's no way you can win!
   Speakers:
+  - Bad Man
+  - Evil Guy
   - Bad Man
   - Evil Guy
   - Bad Man
@@ -6955,6 +6959,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2437402757673700380, guid: 4cc44b08a4444cc4fbdbba639db02284, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437402757673700380, guid: 4cc44b08a4444cc4fbdbba639db02284, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2437402757673700381, guid: 4cc44b08a4444cc4fbdbba639db02284, type: 3}
       propertyPath: m_Name
       value: Directional Light (1)
@@ -7309,9 +7321,9 @@ MonoBehaviour:
   Text:
   - NOOOOOOOO!!!!!! Defeated by a mere mortal
   - GG
-  - My the Sun go dark for your sins!
-  - My the ocean run red for your sins!
-  - My the Wor-
+  - May the Sun go dark for your sins!
+  - May the ocean run red for your sins!
+  - May the Wor-
   - enough talk
   - See you in hell
   - Bad Man
@@ -12435,7 +12447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4317506828029377918, guid: e922e162bcc2f4847b1a9e8acafff731, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 14.17
       objectReference: {fileID: 0}
     - target: {fileID: 4317506828029377918, guid: e922e162bcc2f4847b1a9e8acafff731, type: 3}
       propertyPath: m_LocalPosition.z

@@ -19,7 +19,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         restPosition = transform.position;
-        attackPosition = new Vector3(restPosition.x,restPosition.y,restPosition.z-3);
+        attackPosition = new Vector3(restPosition.x,restPosition.y,restPosition.z-3.25f);
     }
 
     // Update is called once per frame
@@ -61,7 +61,7 @@ public class Boss : MonoBehaviour
             GetComponent<Health>().CurrentHealth = GetComponent<Health>().CurrentHealth -1;
             readyToBeHit = false;
             //Fling Bad Man
-            other.rigidbody.AddForce(transform.up * -2, ForceMode2D.Impulse);
+            other.rigidbody.AddForce(transform.up * -10, ForceMode2D.Impulse);
 
             sfxPlayer.Play();
 

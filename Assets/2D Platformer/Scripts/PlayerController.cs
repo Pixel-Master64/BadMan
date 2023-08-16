@@ -36,6 +36,8 @@ namespace Platformer
         public AudioClip SpringSfx;
         public AudioClip OwwSfx;
 
+        public float dialogCooldown;
+
         void Start()
         {
             rigidbody = GetComponent<Rigidbody2D>();
@@ -76,20 +78,23 @@ namespace Platformer
         {
             if (gameManager.InCutscene == false)
             {
-                if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+                if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
                 {
                     rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                     HasJumped = true;
+                    isGrounded = false;
                     JumpSfxPlayer.Play();
                 }
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && dialogCooldown <= 0)
                 {
                     gameManager.advanceTextBox();
                 }
             }
+            if (dialogCooldown >= 0)
+                dialogCooldown = dialogCooldown - Time.deltaTime;
         }
 
         private void Flip()
@@ -188,7 +193,9 @@ namespace Platformer
 
                     gameManager.LoadDialog();
                     gameManager.InCutscene = true;
-                    
+
+                    dialogCooldown = 0.25f;
+
                 }
                 if (other.gameObject.GetComponent<TriggerData>().TriggerTypeChangeChallange == true) // Change Challange
                 {

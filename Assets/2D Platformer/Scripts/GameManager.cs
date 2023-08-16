@@ -134,7 +134,7 @@ namespace Platformer
             else if (CurrentChallange == 3) //Dont Jump
             {
                 CurrentChallangeUI.text = "Objective: Do some jumping jacks";
-                if (player.HasJumped == true && player.isGrounded == true)
+                if (player.HasJumped == true)
                 {
                     player.deathState = true;
                     DeathMessage = "You broke your legs!";
@@ -160,9 +160,16 @@ namespace Platformer
                 else
                 {
                     TimerUI.text = timeDisplay;
+                    
                 }
                 ShowTimer = true;
             }
+            else if (CurrentChallange == 10)
+            {
+                CurrentChallange = 0;
+                Application.Quit();
+            }
+                
 
             else
             {

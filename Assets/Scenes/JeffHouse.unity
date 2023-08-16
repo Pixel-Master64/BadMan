@@ -157,7 +157,7 @@ MonoBehaviour:
   Text:
   - BAD MAN!!!!!! WTF ARE YOU DOING IN MY HOUSE!!!!?!?!?
   - Hey Jeff :)
-  - THERE WAS A GOOD F-ING REASON WHY I LOCKED MY FRONT YEAR
+  - THERE WAS A GOOD F-ING REASON WHY I LOCKED MY FRONT DOOR
   - Yep!
   - LEAEVE MY HOUSE AND BURN IN HELL BAD MAN!
   - anything for you jeff
@@ -1016,6 +1016,7 @@ MonoBehaviour:
   timeDisplay: 
   TimerUI: {fileID: 321596531}
   ShowTimer: 0
+  musicPlayer: {fileID: 0}
 --- !u!4 &1641367836
 Transform:
   m_ObjectHideFlags: 0

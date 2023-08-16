@@ -26,6 +26,8 @@ public class BossAttacks : MonoBehaviour
 
     bool initialWait;
 
+
+
     enum BossState { Wait, Idle, Weak, Dead, Dying };
     BossState bossState;
 
@@ -65,15 +67,15 @@ public class BossAttacks : MonoBehaviour
                     if (GetComponent<Health>().CurrentHealth == 6) //this code is really lame im sorry
                         speed = 1f;
                     else if (GetComponent<Health>().CurrentHealth == 5)
-                        speed = 1.35f;
+                        speed = 1.3f;
                     else if (GetComponent<Health>().CurrentHealth == 4)
-                        speed = 1.7f;
+                        speed = 1.6f;
                     else if (GetComponent<Health>().CurrentHealth == 3)
-                        speed = 2f;
+                        speed = 1.9f;
                     else if (GetComponent<Health>().CurrentHealth == 2)
-                        speed = 2.35f;
+                        speed = 2.2f;
                     else if (GetComponent<Health>().CurrentHealth == 1)
-                        speed = 3f;
+                        speed = 2.5f;
                     else
                         speed = 1f;
 
@@ -81,7 +83,7 @@ public class BossAttacks : MonoBehaviour
 
                     if (!GameManager.InCutscene)
                     {
-                        if (GameManager.totalSeconds % (4 - attackSpeed) == 0 && !justAttacked)
+                        if ((GameManager.totalSeconds % (4 - attackSpeed) == 0 && !justAttacked)) // || GetComponent<Health>().CurrentHealth == 1
                         {
                             justAttacked = true;
                             Debug.Log("Attack >:(");
@@ -112,7 +114,12 @@ public class BossAttacks : MonoBehaviour
                         }
                     }
 
-                    if (justAttacked && GameManager.totalSeconds % (4 - attackSpeed) != 0)
+                    if (GetComponent<Health>().CurrentHealth != 1)
+                    {
+                        if (justAttacked && GameManager.totalSeconds % (4 - attackSpeed) != 0)
+                            justAttacked = false;
+                    }
+                    else                                        //when on 1HP, GO NUTS
                         justAttacked = false;
 
                     break;
@@ -128,7 +135,7 @@ public class BossAttacks : MonoBehaviour
 
                     if (timePassed > 10)
                     {
-                        attacksUntillWeak = 6 + attackSpeed;
+                        attacksUntillWeak = 6;
                         timePassed = 0;
                         bossState = BossState.Idle;
                         gameObject.GetComponent<Boss>().readyToBeHit = false;
@@ -162,6 +169,8 @@ public class BossAttacks : MonoBehaviour
         if (GetComponent<Health>().CurrentHealth != 0)
         {
             attacksUntillWeak = 6 + Mathf.FloorToInt(speed);
+            if (GetComponent<Health>().CurrentHealth == 1)
+                attacksUntillWeak = 15;
             bossState = BossState.Idle;
             rightHand.GetComponent<BossHandMove>().BeNormal();
             leftHand.GetComponent<BossHandMove>().BeNormal();
