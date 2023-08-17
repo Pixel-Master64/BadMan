@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 namespace Platformer
 {
@@ -37,6 +38,7 @@ namespace Platformer
         public AudioClip OwwSfx;
 
         public float dialogCooldown;
+        public float jumpCooldown;
 
         void Start()
         {
@@ -78,7 +80,7 @@ namespace Platformer
         {
             if (gameManager.InCutscene == false)
             {
-                if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
+                if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded && jumpCooldown <= 0)
                 {
                     rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                     HasJumped = true;
@@ -95,6 +97,8 @@ namespace Platformer
             }
             if (dialogCooldown >= 0)
                 dialogCooldown = dialogCooldown - Time.deltaTime;
+            if (jumpCooldown >= 0)
+                jumpCooldown = jumpCooldown - Time.deltaTime;
         }
 
         private void Flip()
@@ -237,5 +241,11 @@ namespace Platformer
 
             }
         }
+
+        public void StartJumpCooldown()
+        {
+            jumpCooldown = 0.2f;
+        }
+
     }
 }

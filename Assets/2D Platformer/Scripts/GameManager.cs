@@ -204,19 +204,21 @@ namespace Platformer
             if (DialogPointer == TextBoxDialog.Length)
             {
                 InCutscene = false;
+                player.StartJumpCooldown();
 
                 if(ActionAfterDialog != 0)
                 {
-                    if(ActionAfterDialog == 1)
+                    if(ActionAfterDialog == 1) //used for boss fight
                     {
                         GameObject boss = GameObject.Find("Boss Head");
                         boss.GetComponent<BossAttacks>().DieFully();
+                        musicPlayer.GetComponent<ReserveSongs>().ChangeToSong1();
                     }
-                    if (ActionAfterDialog == 2)
+                    if (ActionAfterDialog == 2) //switch to reserve song 1
                     {
                         musicPlayer.GetComponent<ReserveSongs>().ChangeToSong1();
                     }
-                    if (ActionAfterDialog == 3)
+                    if (ActionAfterDialog == 3) //switch to reserve song 2
                     {
                         musicPlayer.GetComponent<ReserveSongs>().ChangeToSong2();
                     }
