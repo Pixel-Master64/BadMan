@@ -104,7 +104,7 @@ public class BossHandMove : MonoBehaviour
             case HandState.Hold: //Pause in mid-air to allow for the player to dodge
                 {
                     timePassed += Time.deltaTime;
-                    if (timePassed > 0.35) //after 0.35 seconds, change state to "Smashing"
+                    if (timePassed > 0.4) //after 0.35 seconds, change state to "Smashing"
                     {
                         timePassed = 0;
                         handState = HandState.Smashing;
@@ -143,13 +143,13 @@ public class BossHandMove : MonoBehaviour
                     float distanceToTarget;
                     if (LeftHand)
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(-10.5f, -5f));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10.5f, -5f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(-10.5f, -5.1f));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10.5f, -5.1f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
                     }
                     else
                     {
-                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(10.5f, -5f));
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(10.5f, -5f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
+                        distanceToTarget = Vector2.Distance(transform.position, new Vector2(10.5f, -5.1f));
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(10.5f, -5.1f), distanceToTarget / 0.75f * Time.deltaTime * attackSpeed);
                     }
 
                     timePassed += Time.deltaTime;
@@ -170,7 +170,7 @@ public class BossHandMove : MonoBehaviour
 
                     if (LeftHand)
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(13f, transform.position.y), 15f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(13f, transform.position.y), 12.5f * Time.deltaTime * attackSpeed);
                         if (Vector2.Distance(transform.position, new Vector2(13f, transform.position.y)) < 0.1f) //after reaching the destination, turn of hitboxes and start timer
                         {
                             timePassed += Time.deltaTime;
@@ -179,7 +179,7 @@ public class BossHandMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-13f, transform.position.y), 15f * Time.deltaTime * attackSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(-13f, transform.position.y), 12.5f * Time.deltaTime * attackSpeed);
                         if (Vector2.Distance(transform.position, new Vector2(-13f, transform.position.y)) < 0.1f) //after reaching the destination, turn of hitboxes and start timer
                         {
                             timePassed += Time.deltaTime;

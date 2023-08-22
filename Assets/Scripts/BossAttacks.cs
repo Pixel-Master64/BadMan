@@ -67,15 +67,15 @@ public class BossAttacks : MonoBehaviour
                     if (GetComponent<Health>().CurrentHealth == 6) //this code is really lame im sorry
                         speed = 1f;
                     else if (GetComponent<Health>().CurrentHealth == 5)
-                        speed = 1.3f;
+                        speed = 1.25f;
                     else if (GetComponent<Health>().CurrentHealth == 4)
-                        speed = 1.6f;
+                        speed = 1.5f;
                     else if (GetComponent<Health>().CurrentHealth == 3)
-                        speed = 1.9f;
+                        speed = 1.75f;
                     else if (GetComponent<Health>().CurrentHealth == 2)
-                        speed = 2.2f;
+                        speed = 2f;
                     else if (GetComponent<Health>().CurrentHealth == 1)
-                        speed = 2.5f;
+                        speed = 2.35f;
                     else
                         speed = 1f;
 
@@ -170,7 +170,7 @@ public class BossAttacks : MonoBehaviour
         {
             attacksUntillWeak = 6 + Mathf.FloorToInt(speed);
             if (GetComponent<Health>().CurrentHealth == 1)
-                attacksUntillWeak = 15;
+                attacksUntillWeak = 12;
             bossState = BossState.Idle;
             rightHand.GetComponent<BossHandMove>().BeNormal();
             leftHand.GetComponent<BossHandMove>().BeNormal();
